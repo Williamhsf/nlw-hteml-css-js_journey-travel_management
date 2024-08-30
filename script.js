@@ -4,16 +4,31 @@ const atividade = {
   finalizada: true
 }
 
+// lista, array, vetor
+const atividades = [
+  atividade,
+  {
+    nome: 'Academia em grupo',
+    data: new Date("2024-07-08 12:00"),
+    finalizada: false
+  },
+  {
+    nome: 'Gaming session',
+    data: new Date("2024-10-08 11:00"),
+    finalizada: true
+  }
+]
+
 const criarItemDeAtividade = (atividade) => {
 
   
   let input = '<input type="checkbox" '
 
   if(atividade.finalizada) {
-    input = input + 'checked'
+    input += 'checked'
   }
 
-  input = input + '>'
+  input += '>'
 
   return `
     <div>
@@ -26,4 +41,7 @@ const criarItemDeAtividade = (atividade) => {
  
 const section = document.querySelector('section')
 
-section.innerHTML = criarItemDeAtividade(atividade)
+for(let atividade of atividades) {
+
+  section.innerHTML += criarItemDeAtividade(atividade)
+}
