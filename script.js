@@ -1,3 +1,17 @@
+const formatador = (data) => {
+  return {
+    dia: {
+      numerico: dayjs(data).format('DD'),
+      semana: {
+        curto: dayjs(data).format('ddd'),
+        longo: dayjs(data).format('dddd'),
+      }
+    },
+    mes: dayjs(data).format('MMMM'),
+    hora: dayjs(data).format('HH:mm'),
+  }
+}
+
 const atividade = {
   nome: "Almoço",
   data: new Date("2024-07-08 10:00"),
@@ -19,7 +33,7 @@ let atividades = [
   }
 ]
 
-atividades = []
+// atividades = []
 
 const criarItemDeAtividade = (atividade) => {
   
@@ -31,11 +45,18 @@ const criarItemDeAtividade = (atividade) => {
 
   input += '>'
 
+  const formatar = formatador(atividade.data)
+
   return `
     <div>
       ${input}
       <span>${atividade.nome}</span>
-      <time>${atividade.data}</time>
+      <time>
+        ${formatar.dia.semana.longo}, 
+        dia ${formatar.dia.numerico}
+        de ${formatar.mes}
+        às ${formatar.hora}h
+      </time>
     </div>
   `
 } 
