@@ -5,7 +5,7 @@ const atividade = {
 }
 
 // lista, array, vetor
-const atividades = [
+let atividades = [
   atividade,
   {
     nome: 'Academia em grupo',
@@ -19,8 +19,9 @@ const atividades = [
   }
 ]
 
-const criarItemDeAtividade = (atividade) => {
+atividades = []
 
+const criarItemDeAtividade = (atividade) => {
   
   let input = '<input type="checkbox" '
 
@@ -39,9 +40,18 @@ const criarItemDeAtividade = (atividade) => {
   `
 } 
  
-const section = document.querySelector('section')
+const atualizarListaDeAtividades = () => {
+  const section = document.querySelector('section')
 
-for(let atividade of atividades) {
+  // verificar se a lista esta vazia
+  if(atividades.length == 0) {
+    section.innerHTML = `<p>Nenhuma atividade cadastrada.</p>`
+  }
 
-  section.innerHTML += criarItemDeAtividade(atividade)
+  for(let atividade of atividades) {  
+    section.innerHTML += criarItemDeAtividade(atividade)
+    return
+  }
 }
+
+atualizarListaDeAtividades()
