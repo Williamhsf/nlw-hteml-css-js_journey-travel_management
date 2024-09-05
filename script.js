@@ -35,7 +35,7 @@ let atividades = [
   }
 ]
 
-// atividades = []
+  atividades = []
 
 const criarItemDeAtividade = (atividade) => {
   
@@ -116,12 +116,25 @@ const salvarAtividade = (event) => {
 
 const criarDiasSelecao = () => {
 // dias disponiveis em formato de lista
-const dias = [
-  "2024-09-05",
-  "2024-09-06",
-  "2024-09-07",
-  "2024-09-08",
-]
+// const dias = [
+//   "2024-09-05",
+//   "2024-09-06",
+//   "2024-09-07",
+//   "2024-09-08",
+// ]
+
+const dias = []
+  const ano = 2024
+  const dataInicial = new Date(`${ano}-01-01`)
+  const dataFinal = new Date(`${ano}-12-31`)
+
+  // Iterar por cada dia do ano
+  for (
+    let dataAtual = dataInicial; 
+    dataAtual <= dataFinal; 
+    dataAtual.setDate(dataAtual.getDate() + 1)) {
+    dias.push(dataAtual.toISOString().split('T')[0]) // formato yyyy-mm-dd
+  }
 
 let diasSelecao = ''
 
